@@ -1,0 +1,18 @@
+# This is a comment in an .esc file
+
+:look bernd
+    say player "That's Bernd, my colleague. He seems completely absorbed by his retro game collection."
+
+:look sabine
+    say player "That's Sabine. She's the best coder here, but it's hard to get her attention."
+
+:look coffee_machine
+    say player "The good old 'Datenretter 5000'. It's broken, as usual. A weird blue wire is dangling from the side."
+
+:pickup glowing_wire
+    # Add the item to the player's inventory
+    inventory_add glowing_wire
+    # Give feedback to the player
+    say player "I've got the strange wire. It's humming faintly."
+    # Remove the item from the scene so it can't be picked up again
+    hide glowing_wire

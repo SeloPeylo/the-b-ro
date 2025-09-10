@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://dgl25q2q2q2q"]
+
+[ext_resource type="Script" path="res://addons/escoria-core/game/core-scripts/esc_room.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c1jbe2jkvq1w" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://assets/office_background_placeholder.png" id="3"]
+[ext_resource type="Script" path="res://addons/escoria-core/game/core-scripts/esc_item.gd" id="4"]
+[ext_resource type="Texture2D" path="res://assets/bernd_placeholder.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/sabine_placeholder.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/coffee_machine_placeholder.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/floppy_disks_placeholder.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/bonsai_tree_placeholder.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/glowing_wire_placeholder.png" id="10"]
+[ext_resource type="Script" path="res://addons/escoria-core/game/core-scripts/esc_location.gd" id="11"]
+
+[sub_resource type="NavigationPolygon" id="1"]
+vertices = PackedVector2Array(100, 700, 1180, 700, 1180, 500, 100, 500)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+outlines = [PackedVector2Array(100, 500, 1180, 500, 1180, 700, 100, 700)]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(64, 64)
+
+[node name="office" type="Node2D"]
+script = ExtResource("1")
+global_id = "office"
+esc_script = "res://scenes/office.esc"
+player_scene = ExtResource("2")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("3")
+centered = false
+
+[node name="walkable_area" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("1")
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="bernd" type="Area2D" parent="Hotspots"]
+position = Vector2(200, 400)
+script = ExtResource("4")
+global_id = "bernd"
+tooltip_name = "Bernd"
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotspots/bernd"]
+texture = ExtResource("5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspots/bernd"]
+shape = SubResource("2")
+
+[node name="ESCLocation" type="Marker2D" parent="Hotspots/bernd"]
+position = Vector2(0, 50)
+script = ExtResource("11")
+
+[node name="sabine" type="Area2D" parent="Hotspots"]
+position = Vector2(400, 400)
+script = ExtResource("4")
+global_id = "sabine"
+tooltip_name = "Sabine"
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotspots/sabine"]
+texture = ExtResource("6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspots/sabine"]
+shape = SubResource("2")
+
+[node name="ESCLocation" type="Marker2D" parent="Hotspots/sabine"]
+position = Vector2(0, 50)
+script = ExtResource("11")
+
+[node name="coffee_machine" type="Area2D" parent="Hotspots"]
+position = Vector2(600, 400)
+script = ExtResource("4")
+global_id = "coffee_machine"
+tooltip_name = "Coffee Machine"
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotspots/coffee_machine"]
+texture = ExtResource("7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspots/coffee_machine"]
+shape = SubResource("2")
+
+[node name="ESCLocation" type="Marker2D" parent="Hotspots/coffee_machine"]
+position = Vector2(0, 50)
+script = ExtResource("11")
+
+[node name="floppy_disks" type="Area2D" parent="Hotspots"]
+position = Vector2(800, 400)
+script = ExtResource("4")
+global_id = "floppy_disks"
+tooltip_name = "Floppy Disks"
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotspots/floppy_disks"]
+texture = ExtResource("8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspots/floppy_disks"]
+shape = SubResource("2")
+
+[node name="ESCLocation" type="Marker2D" parent="Hotspots/floppy_disks"]
+position = Vector2(0, 50)
+script = ExtResource("11")
+
+[node name="bonsai_tree" type="Area2D" parent="Hotspots"]
+position = Vector2(1000, 400)
+script = ExtResource("4")
+global_id = "bonsai_tree"
+tooltip_name = "Bonsai Tree"
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotspots/bonsai_tree"]
+texture = ExtResource("9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspots/bonsai_tree"]
+shape = SubResource("2")
+
+[node name="ESCLocation" type="Marker2D" parent="Hotspots/bonsai_tree"]
+position = Vector2(0, 50)
+script = ExtResource("11")
+
+[node name="glowing_wire" type="Area2D" parent="Hotspots"]
+position = Vector2(650, 450)
+script = ExtResource("4")
+global_id = "glowing_wire"
+tooltip_name = "Glowing Wire"
+default_action = "pickup"
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotspots/glowing_wire"]
+texture = ExtResource("10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspots/glowing_wire"]
+shape = SubResource("2")
+
+[node name="ESCLocation" type="Marker2D" parent="Hotspots/glowing_wire"]
+position = Vector2(0, 50)
+script = ExtResource("11")
+
+[node name="start_pos" type="Marker2D" parent="."]
+position = Vector2(150, 600)
+script = ExtResource("11")
+global_id = "start_pos"
+is_start_location = true
